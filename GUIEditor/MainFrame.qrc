@@ -1,0 +1,38 @@
+<RCC>
+  <qresource prefix="MainFrame">
+    <file>GUIEditor.png</file>
+    <file>..\Resources\app_exit.png</file>
+    <file>..\Resources\app_about.png</file>
+    <file>..\Resources\fullscreen.png</file>
+    <file>..\Resources\add.png</file>
+    <file>..\Resources\remove.png</file>
+    <file>..\Resources\save_file_as.png</file>
+    <file>..\Resources\gui_alignTop.png</file>
+    <file>..\Resources\gui_alignBottom.png</file>
+    <file>..\Resources\gui_alignRight.png</file>
+    <file>..\Resources\gui_alignLeft.png</file>
+    <file>..\Resources\option_showGrid.png</file>
+    <file>..\Resources\gui_cling.png</file>
+    <file>..\Resources\gui_text.png</file>
+    <file>..\Resources\gui_picture.png</file>
+    <file>..\Resources\gui_static.png</file>
+    <file>..\Resources\gui_textEdit.png</file>
+    <file>..\Resources\gui_groupBox.png</file>
+    <file>..\Resources\gui_button.png</file>
+    <file>..\Resources\gui_checkBox.png</file>
+    <file>..\Resources\gui_radioButton.png</file>
+    <file>..\Resources\gui_comboBox.png</file>
+    <file>..\Resources\gui_listBox.png</file>
+    <file>..\Resources\gui_listCtrl.png</file>
+    <file>..\Resources\gui_treeCtrl.png</file>
+    <file>..\Resources\gui_tabCtrl.png</file>
+    <file>..\Resources\gui_custom.png</file>
+    <file>..\Resources\option_backgroundColor.png</file>
+    <file>..\Resources\gui_setOnTop.png</file>
+    <file>..\Resources\language_english.png</file>
+    <file>..\Resources\language_french.png</file>
+    <file>..\Resources\edit_copy.png</file>
+    <file>..\Resources\edit_cut.png</file>
+    <file>..\Resources\edit_paste.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="MainFrame">
+    <file>..\Resources\app_exit.png</file>
+    <file>..\Resources\close_file.png</file>
+    <file>..\Resources\open_file.png</file>
+    <file>..\Resources\save_file_as.png</file>
+    <file>..\Resources\play.png</file>
+    <file>..\Resources\stop.png</file>
+    <file>..\Resources\edit_texture.png</file>
+    <file>..\Resources\app_about.png</file>
+    <file>..\Resources\option_showGrid.png</file>
+    <file>..\Resources\settings.png</file>
+    <file>..\Resources\fullscreen.png</file>
+    <file>..\Resources\option_backgroundColor.png</file>
+    <file>..\Resources\language_english.png</file>
+    <file>..\Resources\language_french.png</file>
+    <file>..\Resources\option_showCollision.png</file>
+    <file>ModelEditor.png</file>
+  </qresource>
+</RCC>
