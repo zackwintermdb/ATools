@@ -65,7 +65,7 @@ void CTextFile::Close()
 	m_mark = null;
 }
 
-void CTextFile::_getToken(bool number)
+void CTextFile::_getToken(bool number, bool ids)
 {
 	m_token[0] = '\0';
 	QChar* curTok = m_token;
@@ -186,14 +186,19 @@ void CTextFile::_getToken(bool number)
 				m_tokenType = ETokenType::Define;
 			else if (m_token[0] == 'I' && m_token[1] == 'D' && m_token[2] == 'S')
 			{
-				const QMap<string, string>::const_iterator it = s_texts.constFind(tok);
-				if (it != s_texts.constEnd())
+				if (ids)
 				{
-					const string& text = it.value();
-					memcpy(m_token, text.constData(), text.size() * sizeof(QChar));
-					m_token[text.size()] = '\0';
-					m_tokenType = ETokenType::String;
+					const QMap<string, string>::const_iterator it = s_texts.constFind(tok);
+					if (it != s_texts.constEnd())
+					{
+						const string& text = it.value();
+						memcpy(m_token, text.constData(), text.size() * sizeof(QChar));
+						m_token[text.size()] = '\0';
+						m_tokenType = ETokenType::String;
+					}
 				}
+				else
+					m_tokenType = ETokenType::String;
 			}
 		}
 

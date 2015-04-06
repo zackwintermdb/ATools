@@ -136,20 +136,10 @@ bool CWorld::Save(const string& filename)
 	if (!_saveWldFile(m_filename % ".wld")
 		|| !_saveDyoFile(m_filename % ".dyo")
 		|| !_saveRgnFile(m_filename % ".rgn")
-		|| !_saveTxtTxtFile(m_filename % ".txt.txt"))
+		|| !_saveTxtTxtFile(m_filename % ".txt.txt")
+		|| !_savePatFile(m_filename % ".pat")
+		|| !_saveCntFile(m_filename % ".wld.cnt"))
 		return false;
-
-	if (m_continents.GetSize() > 0)
-	{
-		if (!_saveCntFile(m_filename % ".wld.cnt"))
-			return false;
-	}
-
-	if (m_paths.size() > 0)
-	{
-		if (!_savePatFile(m_filename % ".pat"))
-			return false;
-	}
 
 	int x, z;
 	for (z = 0; z < m_height; z++)

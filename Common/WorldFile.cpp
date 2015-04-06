@@ -605,18 +605,18 @@ bool CWorld::_loadTxtTxtFile(const string& filename)
 	if (!file.Load(filename))
 		return false;
 
-	file.NextToken();
+	file.NextToken(false);
 	while (file.TokenType() != ETokenType::End)
 	{
 		const string id = file.Token();
 		if (id.size() <= 9 || id[0] != 'I' || id[1] != 'D' || id[2] != 'S')
 		{
-			file.NextToken();
+			file.NextToken(false);
 			continue;
 		}
 
 		m_texts[id] = file.GetLine();
-		file.NextToken();
+		file.NextToken(false);
 	}
 
 	file.Close();
@@ -773,29 +773,32 @@ bool CWorld::_savePatFile(const string& filename)
 
 	for (auto it = m_paths.begin(); it != m_paths.end(); it++)
 	{
-		out << "INDEX " << it.key() << endl << '{' << endl;
-
-		for (int i = 0; i < it.value()->GetSize(); i++)
+		if (it.value()->GetSize() > 0)
 		{
-			path = it.value()->GetAt(i);
+			out << "INDEX " << it.key() << endl << '{' << endl;
 
-			out << "	    " << path->m_index << "    " << path->m_pos.x << ' ' << path->m_pos.y << ' ' << path->m_pos.z << endl;
-
-			if (i > 0)
+			for (int i = 0; i < it.value()->GetSize(); i++)
 			{
-				dir = path->m_pos - it.value()->GetAt(i - 1)->m_pos;
-				len = D3DXVec3Length(&dir);
-				D3DXVec3Normalize(&dir, &dir);
+				path = it.value()->GetAt(i);
 
-				out << "		 " << dir.x << ' ' << dir.y << ' ' << dir.z << ' '
-					<< path->m_motion << ' '
-					<< path->m_delay << ' '
-					<< len
-					<< endl;
+				out << "	    " << path->m_index << "    " << path->m_pos.x << ' ' << path->m_pos.y << ' ' << path->m_pos.z << endl;
+
+				if (i > 0)
+				{
+					dir = path->m_pos - it.value()->GetAt(i - 1)->m_pos;
+					len = D3DXVec3Length(&dir);
+					D3DXVec3Normalize(&dir, &dir);
+
+					out << "		 " << dir.x << ' ' << dir.y << ' ' << dir.z << ' '
+						<< path->m_motion << ' '
+						<< path->m_delay << ' '
+						<< len
+						<< endl;
+				}
 			}
-		}
 
-		out << '}' << endl << endl;
+			out << '}' << endl << endl;
+		}
 	}
 
 	file.close();

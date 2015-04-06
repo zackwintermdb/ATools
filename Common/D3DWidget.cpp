@@ -17,7 +17,8 @@ CD3DWidget::CD3DWidget(QWidget* parent, Qt::WindowFlags flags)
 	m_deviceObjectsInitied(false),
 	m_deviceLost(false),
 	m_autoRefresh(false),
-	m_deviceObjectsRestored(false)
+	m_deviceObjectsRestored(false),
+	m_skipFrame(true)
 {
 	setAttribute(Qt::WA_PaintOnScreen);
 	setAttribute(Qt::WA_NoSystemBackground);
@@ -171,7 +172,7 @@ bool CD3DWidget::RenderEnvironment()
 	if (!MoveFrame())
 		return false;
 
-	if (m_autoRefresh)
+	if (m_autoRefresh && m_skipFrame)
 	{
 		if (m_elapsedTimer.elapsed() > 16)
 		{
@@ -248,7 +249,8 @@ void CD3DWidget::SetAutoRefresh(bool autoRefresh)
 	{
 		connect(&m_timer, SIGNAL(timeout()), this, SLOT(RenderEnvironment()));
 		m_timer.start(0);
-		m_elapsedTimer.start();
+		if (m_skipFrame)
+			m_elapsedTimer.start();
 	}
 	else
 	{
@@ -395,6 +397,20 @@ bool CD3DWidget::_initializeEnvironment()
 			wcsncat(m_deviceStats,
 				szMS,
 				(sizeof(m_deviceStats) / sizeof((m_deviceStats)[0])) - lstrlen(m_deviceStats) - 1);
+		}
+
+		switch (m_presentParameters.PresentationInterval)
+		{
+		case D3DPRESENT_INTERVAL_DEFAULT:
+		case D3DPRESENT_INTERVAL_ONE:
+		case D3DPRESENT_INTERVAL_TWO:
+		case D3DPRESENT_INTERVAL_THREE:
+		case D3DPRESENT_INTERVAL_FOUR:
+			m_skipFrame = false;
+			break;
+		default:
+			m_skipFrame = true;
+			break;
 		}
 
 		if (InitDeviceObjects())

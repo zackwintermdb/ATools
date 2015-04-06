@@ -542,10 +542,12 @@ bool CProject::_loadCharacter(const string& filename)
 	string key;
 	do
 	{
-		key = file.GetString().toLower();
+		Character character;
+
+		character.ID = file.GetString();
+		key = character.ID.toLower();
 		file.NextToken();
 
-		Character character;
 		character.moverID = 0;
 		character.head = 0;
 		character.hairColor = 0;

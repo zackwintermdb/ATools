@@ -53,7 +53,7 @@ void CMover::Write(CFile& file, const D3DXVECTOR3& posOffset)
 	memset(unused, 0, 32);
 	file.Write(unused, 32);
 
-	const QByteArray characterKey = m_characterKey.normalized(QString::NormalizationForm_D).replace(QRegExp("[^a-zA-Z\\s_]"), "").toLocal8Bit();
+	const QByteArray characterKey = (m_character ? m_character->ID : "").toLocal8Bit();
 	if (characterKey.size() > 0)
 		for (i = 0; i < characterKey.size() && i < 31; i++)
 			file.Write(characterKey.at(i));

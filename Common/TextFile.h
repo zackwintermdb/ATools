@@ -43,12 +43,12 @@ public:
 	bool GetBool() {
 		return GetInt() != 0;
 	}
-	string GetString() {
-		_getToken(false);
+	string GetString(bool ids = true) {
+		_getToken(false, ids);
 		return string(m_token);
 	}
-	void NextToken() {
-		_getToken(false);
+	void NextToken(bool ids = true) {
+		_getToken(false, ids);
 	}
 	void SetMark() {
 		if (m_cur)
@@ -73,7 +73,7 @@ private:
 	int m_value;
 	QChar* m_mark;
 
-	void _getToken(bool number);
+	void _getToken(bool number, bool ids = true);
 
 public:
 	static bool LoadDefine(const string& filename, bool error = true);

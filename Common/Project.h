@@ -65,6 +65,7 @@ struct ItemProp
 
 struct Character
 {
+	string ID;
 	string name;
 	uint moverID;
 	int hair;

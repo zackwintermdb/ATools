@@ -129,6 +129,18 @@ DWORD CSettings::GetMSQuality()
 
 DWORD CSettings::GetPresentInterval()
 {
+	if (AdapterInfos[Windowed]->
+		DeviceInfos[ndi[Windowed]].
+		DeviceCombos[ndc[Windowed]].
+		PresentIntervals.Find(D3DPRESENT_INTERVAL_DEFAULT) != -1)
+		return D3DPRESENT_INTERVAL_DEFAULT;
+
+	if (AdapterInfos[Windowed]->
+		DeviceInfos[ndi[Windowed]].
+		DeviceCombos[ndc[Windowed]].
+		PresentIntervals.Find(D3DPRESENT_INTERVAL_ONE) != -1)
+		return D3DPRESENT_INTERVAL_ONE;
+
 	return (DWORD)AdapterInfos[Windowed]->
 		DeviceInfos[ndi[Windowed]].
 		DeviceCombos[ndc[Windowed]].

@@ -31,6 +31,8 @@ CRegion::CRegion()
 
 void CRegion::WriteRegion(QTextStream& file)
 {
+	const QRect rect = m_rect.normalized();
+
 	file << "region3 "
 		<< m_type << ' '
 		<< m_modelID << ' '
@@ -46,10 +48,10 @@ void CRegion::WriteRegion(QTextStream& file)
 		<< m_teleportWorldPos.x << ' '
 		<< m_teleportWorldPos.y << ' '
 		<< m_teleportWorldPos.z << ' '
-		<< m_rect.top() << ' '
-		<< m_rect.left() << ' '
-		<< m_rect.bottom() << ' '
-		<< m_rect.right() << ' '
+		<< rect.top() << ' '
+		<< rect.left() << ' '
+		<< rect.bottom() << ' '
+		<< rect.right() << ' '
 		<< '"' << m_key << "\" "
 		<< (m_targetKey ? 1 : 0) << ' '
 		<< m_itemID << ' '
@@ -114,7 +116,7 @@ void CRegion::ReadRegion(CTextFile* file)
 	if (hasTitle)
 	{
 		file->NextToken();
-		m_titleDefine = file->GetString();
+		m_titleDefine = file->GetString(false);
 		file->NextToken();
 	}
 
@@ -123,7 +125,7 @@ void CRegion::ReadRegion(CTextFile* file)
 	if (hasDesc)
 	{
 		file->NextToken();
-		m_descDefine = file->GetString();
+		m_descDefine = file->GetString(false);
 		file->NextToken();
 	}
 }

@@ -117,6 +117,8 @@ void CSpawnObject::ReadRespawn(CTextFile* file)
 
 void CSpawnObject::WriteRespawn(QTextStream& file)
 {
+	const QRect rect = m_rect.normalized();
+
 	file << "respawn7 "
 			<< m_type << ' '
 			<< m_modelID << ' '
@@ -126,10 +128,10 @@ void CSpawnObject::WriteRespawn(QTextStream& file)
 			<< m_count << ' '
 			<< m_time << ' '
 			<< m_attackCount << ' '
-			<< m_rect.top() << ' '
-			<< m_rect.left() << ' '
-			<< m_rect.bottom() << ' '
-			<< m_rect.right() << ' '
+			<< rect.top() << ' '
+			<< rect.left() << ' '
+			<< rect.bottom() << ' '
+			<< rect.right() << ' '
 			<< m_dayMin << ' '
 			<< m_dayMax << ' '
 			<< m_hourMin << ' '

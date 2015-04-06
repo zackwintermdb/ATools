@@ -55,6 +55,7 @@ private:
 	QElapsedTimer m_elapsedTimer;
 	QTimer m_timer;
 	bool m_autoRefresh;
+	bool m_skipFrame;
 
 private:
 	bool _chooseInitialSettings();
