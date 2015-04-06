@@ -51,6 +51,7 @@ build/
 [Oo]bj/
 [Gg]enerated [Ff]iles/
 Binary/
+Lib/Assimp/lib/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
